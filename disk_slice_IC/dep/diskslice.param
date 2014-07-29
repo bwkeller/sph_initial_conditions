@@ -1,0 +1,92 @@
+############### Run and Output related
+achInFile             = FILE.std
+achOutName            = FILE
+bStandard             = 1 #Input and Output in tipsy standard format
+bOverwrite            = 0 #Start the simulation from the beginning
+iCheckInterval        = 1 #How often to write a checkpoint file
+iOutInterval          = 1 #How often to write and output
+iLogInterval          = 1 #How often to make an entry in the log
+bParaRead             = 1 
+bParaWrite            = 0
+bDoGravity            = 1 #Run with gravity
+bDoSelfGravity        = 1
+bDoGas                = 1
+#
+############### Timesteps
+nSteps                = 500
+dDelta                = 2e-7
+iMaxRung              = 24 #determines maximum subdivisions of dDelta
+dEta                  = 0.19 #controls the scale of the timestep picking criterion
+dEtaCourant           = 0.4
+#
+############### Tree Options
+dTheta                = 0.525 #opening angle that determines when to open a branch in the tree
+dTheta2               = 0.725 #theta used after redshift of 2
+#
+############### Performance Options
+dExtraStore           = 0.8 #FG higher 0.8-1.2 if code crashes
+#nTruncateRung         = 96 #128
+#dFracNoDomainDecomp   = 0.1 #The fraction of active particles below which a domain decomposition won't happen.
+#
+############### Cosmology
+bComove               = 0
+bPeriodic             = 1
+dxPeriod              = 1.0
+dyPeriod              = 1.0
+dzPeriod              = 0
+#
+############### Gas options/
+dMsolUnit       = 1
+dKpcUnit        = 1
+dConstGamma           = 1.666667 #exponent in the equation of state 
+dMeanMolWeight        = 0.59259 #mean molecular weight of the gas particle
+nSmooth               = 200 #number of nearest neighbors included in the smoothing radius of SPH particles
+nSmoothFeedback       = 1 #number of nearest neighbors included in the smoothing radius of SPH particles
+bPhysicalSoft         = 1 #options for physical softening
+iGasModel             = 2
+dThermalDiffusionCoeff =    0.03 #Added for area51 Best value after FG+AB+LA looked into it.
+#
+############### SPH and Ewald. Do not touch unless black belt N-Body ninja.
+bEwald                = 0
+nReplicas             = 5 #for periodic box
+bKDK                  = 1 
+bCannonical           = 1
+bGeometric            = 0
+bVDetails             = 1
+bViscosityLimiter     = 1
+bViscosityLimitdt     = 1
+bFastGas              = 1
+dhMinOverSoft         = 0.5 #FG Works. Let sleeping dogs lie. 
+############ Softening comoving then physical
+bSoftMaxMul           = 1 
+dSoftMax              = 9 #FG 15 for runs that stop at z=4
+#
+############### SF parameters 
+bStarForm             = 0
+#dStarEff             = 0. #Fraction of gas converted into stars per timestep; disabled by InitStarMass
+dInitStarMass         = MASS
+dMinGasMass     =      MIN
+dInitGasMass     =      MASS
+dCStar                = 0.1 #Coefficient of star formation in the star formation law
+#dStarFormEfficiencyH2 = 1.0       ############# H2
+dPhysDenMin           = 1e3  #Minimum physical density for forming stara # no need for setting a threshold
+dDeltaStarForm        = 1e6  #Minimum SF timestep in years
+############## SN Feedback parameters
+bFeedBack             = 1
+############## Gas physics with H2 and metals
+bUV                   = 1 # Turn on background UV field
+############### What arrays to write
+iBinaryOutput         = 1 #Format of the extra array files output by PKDGRAV
+bDoIOrderOutput       = 1 #writes .iord, .igasorder, .rhoform, .Tform
+bDoDensity            = 1
+bDoCSound             = 1
+bDohOutput            = 1
+############### Add the external potential needed for Chris' IC
+bGalaxyDiskVerticalPotential            = 1
+dGalaxyDiskVerticalPotentialVc          = 220
+dGalaxyDiskVerticalPotentialR           = 6
+############### I need to define an initial softening length
+dSoft		      = 1e-4
+############### Ionization stuff
+dConstAlpha = 2.0
+dESN			= 1e51
